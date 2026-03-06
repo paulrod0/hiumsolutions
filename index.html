@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hium Solutions | Future Tech Solutions</title>
+    <meta name="description" content="Hium Solutions provides enterprise-grade tech solutions focusing on innovation.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- Using Global Three.js for local file compatibility -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js"></script>
+    <script src="js/i18n.js"></script>
+    <script>
+        // Immediate theme initialization to prevent FOIT
+        (function () {
+            const savedTheme = localStorage.getItem('hium-theme');
+            const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const theme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+</head>
+
+<body>
+    <div id="particle-container"></div>
+    <header class="navbar">
+        <div class="container">
+            <div class="logo">
+                <img src="assets/logo.png" alt="Hium Solutions Logo">
+                <span>Hium</span>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li class="lang-selector">
+                        <button class="lang-btn active" onclick="setLanguage('en')">EN</button>
+                        <button class="lang-btn" onclick="setLanguage('es')">ES</button>
+                    </li>
+                    <li class="theme-switch-container">
+                        <button id="theme-toggle" class="theme-toggle" title="Toggle Theme">
+                            <svg class="sun-icon" viewBox="0 0 24 24" width="20" height="20">
+                                <path fill="currentColor"
+                                    d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58c-.39-.39-1.03-.39-1.41 0s-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37c-.39-.39-1.03-.39-1.41 0s-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41l-1.06-1.06zm1.06-12.37c-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06c.39-.38.39-1.02 0-1.41zM7.05 18.37c-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06c.39-.38.39-1.02 0-1.41z" />
+                            </svg>
+                            <svg class="moon-icon" viewBox="0 0 24 24" width="20" height="20">
+                                <path fill="currentColor"
+                                    d="M12.12 22a10 10 0 0 0 9.22-6.19 1 1 0 0 0-1.14-1.32 8.52 8.52 0 0 1-5.71-12.86 1 1 0 0 0-1-1.58A10 10 0 0 0 12.12 22z" />
+                            </svg>
+                        </button>
+                    </li>
+                    <li><a href="#solutions" data-i18n="nav_solutions">Solutions</a></li>
+                    <li><a href="#services" data-i18n="nav_services">Servicios</a></li>
+                    <li><a href="#about" data-i18n="nav_about">Sobre nosotros</a></li>
+                    <li><a href="#contact" class="btn-primary" data-i18n="nav_get_started">Get Started</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container hero-content">
+                <h1 class="fade-in" data-i18n="hero_title">Experience the Future <br>Hium
+                    <span class="highlight">Solutions</span>
+                </h1>
+                <p class="subtitle fade-in-delayed" data-i18n="hero_subtitle">Elevate your digital infrastructure with
+                    Hium Solutions Seamless,
+                    scalable, and sophisticated</p>
+                <div class="actions fade-in-delayed">
+                    <a href="#solutions" class="btn-hero-primary" data-i18n="hero_explore">Explore Solutions</a>
+                    <a href="#contact" class="btn-outline" data-i18n="hero_contact">Contact Us</a>
+                </div>
+            </div>
+        </section>
+
+        </section>
+
+        <section id="solutions" class="solutions-section">
+            <div class="container">
+                <h2 class="section-title" id="typewriter-title" data-i18n="solutions_title">Core Solutions</h2>
+                <div class="bento-grid">
+                    <!-- Tarjeta Principal: AI Orchestration -->
+                    <div class="bento-item ai-bento">
+                        <div class="bento-content">
+                            <h3 data-i18n="sol_ai_title">AI Orchestration</h3>
+                            <p data-i18n="sol_ai_desc">Deploy autonomous agents to manage complex workflows and optimize
+                                performance.</p>
+                        </div>
+                    </div>
+                    <!-- Tarjeta Lateral: Cloud Infrastructure -->
+                    <div class="bento-item cloud-bento">
+                        <div class="bento-content">
+                            <h3 data-i18n="sol_cloud_title">Cloud Infrastructure</h3>
+                            <p data-i18n="sol_cloud_desc">Scalable, secure, and high-performance environments.</p>
+                        </div>
+                    </div>
+                    <!-- Tarjeta Lateral: Advanced Security -->
+                    <div class="bento-item security-bento">
+                        <div class="bento-content">
+                            <h3 data-i18n="sol_sec_title">Advanced Security</h3>
+                            <p data-i18n="sol_sec_desc">Enterprise-grade protection and detection.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- New About Hium Section with 3D Interaction -->
+        <section id="about-hium" class="section about-hium-section">
+            <div class="container">
+                <div class="about-hium-layout">
+                    <div class="about-hium-text-side">
+                        <h2 class="about-hium-title reveal-cinematic" data-i18n="about_title">Un equipo que piensa en tu
+                            negocio.</h2>
+                        <div class="about-hium-description reveal-cinematic-delayed">
+                            <p data-i18n="about_p1">En <strong>HIUM SOLUTIONS</strong> somos un equipo multidisciplinar
+                                de desarrolladores,
+                                consultores y especialistas en inteligencia artificial.</p>
+                            <p data-i18n="about_p2">Ayudamos a empresas a diseñar, construir y escalar soluciones
+                                digitales: desde
+                                aplicaciones web y móviles hasta sistemas empresariales e implementaciones de IA.</p>
+                            <p data-i18n="about_p3">Trabajamos con metodologías ágiles, enfoque estratégico y
+                                comunicación directa. Nuestro
+                                objetivo: crear tecnología que funcione, crezca contigo y genere valor desde el primer
+                                día.</p>
+                        </div>
+                    </div>
+                    <div class="about-hium-visual-side">
+                        <div id="moebius-target" class="moebius-placeholder"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Philosophy 360 Section -->
+        <section id="philosophy" class="section philosophy-360-section">
+            <div class="container">
+                <div class="section-header reveal-cinematic">
+                    <h2 data-i18n="phi_title">Filosofía y valores</h2>
+                    <p data-i18n="phi_subtitle">Creemos que la tecnología debe ser clara, útil y orientada a resultados.
+                        Trabajamos como socios estratégicos de cada proyecto.</p>
+                </div>
+
+                <div class="philosophy-360-container">
+                    <div class="phi-carousel">
+                        <div class="phi-item flex-val-1">
+                            <div class="phi-card">
+                                <div class="phi-icon">01</div>
+                                <h3>Innovación con propósito</h3>
+                                <p>Tecnología que aporta valor real, no tendencias vacías.</p>
+                            </div>
+                        </div>
+                        <div class="phi-item flex-val-2">
+                            <div class="phi-card">
+                                <div class="phi-icon">02</div>
+                                <h3>Orientación a resultados</h3>
+                                <p>Cada decisión enfocada en el éxito de tu negocio.</p>
+                            </div>
+                        </div>
+                        <div class="phi-item flex-val-3">
+                            <div class="phi-card">
+                                <div class="phi-icon">03</div>
+                                <h3>Transparencia</h3>
+                                <p>Comunicación clara, honesta y sin sorpresas.</p>
+                            </div>
+                        </div>
+                        <div class="phi-item flex-val-4">
+                            <div class="phi-card">
+                                <div class="phi-icon">04</div>
+                                <h3>Calidad técnica</h3>
+                                <p>Excelencia en cada línea de código, sin excepciones.</p>
+                            </div>
+                        </div>
+                        <div class="phi-item flex-val-5">
+                            <div class="phi-card">
+                                <div class="phi-icon">05</div>
+                                <h3>Cercanía con el cliente</h3>
+                                <p>Tu socio tecnológico, no solo un proveedor.</p>
+                            </div>
+                        </div>
+                        <div class="phi-item flex-val-6">
+                            <div class="phi-card">
+                                <div class="phi-icon">06</div>
+                                <h3>Aprendizaje continuo</h3>
+                                <p>Siempre a la vanguardia de la tecnología.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="services" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 data-i18n="ser_title">Servicios</h2>
+                    <p data-i18n="ser_subtitle">Soluciones tecnológicas integrales para impulsar tu negocio</p>
+                </div>
+                <div class="services-list">
+                    <!-- Service 01: APIs -->
+                    <div class="service-block fade-in">
+                        <div class="service-info">
+                            <div class="service-number">01</div>
+                            <h3 data-i18n="ser_item1_title">Software Development</h3>
+                            <p data-i18n="ser_item1_desc">Apps web y móviles, plataformas internas y sistemas que
+                                escalan con tu negocio.</p>
+                            <div class="service-tags">
+                                <span class="tag">Web Apps</span>
+                                <span class="tag">Mobile</span>
+                                <span class="tag">APIs</span>
+                            </div>
+                        </div>
+                        <div class="service-media">
+                            <div class="video-square">
+                                <div class="api-visual">
+                                    <div class="api-bg-grid"></div>
+                                    <div class="api-connection-line"></div>
+                                    <div class="api-nodes-container">
+                                        <div class="api-tech-node">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2">
+                                                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+                                            </svg>
+                                        </div>
+                                        <div class="api-tech-node" style="animation-delay: -1s">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2">
+                                                <path
+                                                    d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+                                            </svg>
+                                        </div>
+                                        <div class="api-tech-node" style="animation-delay: -2s">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2">
+                                                <circle cx="12" cy="12" r="10" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Service 02: Roadmaps -->
+                    <div class="service-block fade-in-delayed">
+                        <div class="service-info">
+                            <div class="service-number">02</div>
+                            <h3 data-i18n="ser_item2_title">Consultoría Tecnológica</h3>
+                            <p data-i18n="ser_item2_desc">Transformación digital con asesoramiento experto, auditorías y
+                                planificación estratégica.</p>
+                            <div class="service-tags">
+                                <span class="tag" data-i18n="tag_strategy">Estrategia digital</span>
+                                <span class="tag" data-i18n="tag_audit">Auditorías</span>
+                                <span class="tag">Roadmaps</span>
+                            </div>
+                        </div>
+                        <div class="service-media">
+                            <div class="video-square">
+                                <div class="roadmap-visual">
+                                    <div class="roadmap-path-spine">
+                                        <div class="roadmap-path-active"></div>
+                                    </div>
+                                    <div class="roadmap-cards">
+                                        <div class="roadmap-mini-card" style="animation-delay: 1s">
+                                            <div class="card-status">Phase 01</div>
+                                            <div class="card-title">Discovery Audit</div>
+                                        </div>
+                                        <div class="roadmap-mini-card" style="animation-delay: 3s">
+                                            <div class="card-status">Phase 02</div>
+                                            <div class="card-title">Tech Blueprint</div>
+                                        </div>
+                                        <div class="roadmap-mini-card" style="animation-delay: 5s">
+                                            <div class="card-status">Phase 03</div>
+                                            <div class="card-title">Global Launch</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Service 03: Chatbots -->
+                    <div class="service-block fade-in">
+                        <div class="service-info">
+                            <div class="service-number">03</div>
+                            <h3 data-i18n="ser_item3_title">Inteligencia Artificial</h3>
+                            <p data-i18n="ser_item3_desc">IA que optimiza procesos, mejora decisiones y genera valor
+                                tangible desde el primer día.</p>
+                            <div class="service-tags">
+                                <span class="tag" data-i18n="tag_ai_models">Modelos IA</span>
+                                <span class="tag">Chatbots</span>
+                                <span class="tag" data-i18n="tag_auto">Automatización</span>
+                            </div>
+                        </div>
+                        <div class="service-media">
+                            <div class="video-square">
+                                <div class="chatbot-visual">
+                                    <div class="chat-bubbles-layer">
+                                        <div class="chat-bubble user" style="animation-delay: 0.5s">Optimize our
+                                            business.</div>
+                                        <div class="chat-bubble ai" style="animation-delay: 2s">Analyzing data
+                                            markers...</div>
+                                        <div class="chat-bubble user" style="animation-delay: 4.5s">Forecast efficiency.
+                                        </div>
+                                        <div class="chat-bubble ai" style="animation-delay: 6s">+24% growth predicted.
+                                        </div>
+                                    </div>
+                                    <div class="typing-visual">
+                                        <div class="t-dot"></div>
+                                        <div class="t-dot" style="animation-delay: 0.2s"></div>
+                                        <div class="t-dot" style="animation-delay: 0.4s"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact-section">
+        <div class="container">
+            <div class="contact-header">
+                <h2 class="contact-title" data-i18n="contact_title">Hablemos.<br><span
+                        class="accent-text">Cuéntanos</span><br>tu proyecto.</h2>
+                <p class="contact-subtitle" data-i18n="contact_subtitle">Te enviaremos un presupuesto personalizado.</p>
+            </div>
+            <form class="contact-form">
+                <div class="form-group slide-up">
+                    <label for="name" data-i18n="label_name">NOMBRE O EMPRESA</label>
+                    <input type="text" id="name" name="name" placeholder="" required>
+                </div>
+                <div class="form-group slide-up">
+                    <label for="phone" data-i18n="label_phone">TELÉFONO</label>
+                    <input type="tel" id="phone" name="phone" placeholder="" required>
+                </div>
+                <div class="form-group slide-up">
+                    <label for="email" data-i18n="label_email">EMAIL</label>
+                    <input type="email" id="email" name="email" placeholder="" required>
+                </div>
+                <div class="form-group slide-up">
+                    <label for="message" data-i18n="label_message">MENSAJE</label>
+                    <textarea id="message" name="message" rows="4" placeholder="" required></textarea>
+                </div>
+                <button type="submit" class="btn-submit" data-i18n="btn_send">Enviar mensaje</button>
+            </form>
+        </div>
+    </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <span class="footer-logo">Hium Solutions</span>
+            </div>
+            <div class="footer-links">
+                <a href="#hero" data-i18n="footer_home">Inicio</a>
+                <a href="#services" data-i18n="footer_services">Servicios</a>
+                <a href="mailto:info@hiumsolutions.com">info@hiumsolutions.com</a>
+            </div>
+            <div class="footer-copy">
+                <p data-i18n="footer_rights">&copy; 2026 Hium Solutions. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="particles.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+
+            const initParticleInteractions = () => {
+                // Target titles in Bento, Philosophy, and Services
+                document.querySelectorAll('.bento-item, .phi-card, .service-block').forEach(container => {
+                    const isBento = container.classList.contains('bento-item');
+                    const title = container.querySelector('h3');
+                    if (!title) return;
+
+                    container.addEventListener('mouseenter', () => {
+                        if (window.hiumParticles) {
+                            if (isBento) {
+                                // Emission effect specifically for bento
+                                window.hiumParticles.setEmission(container);
+                            } else {
+                                // Pulsing circle on the title for others
+                                window.hiumParticles.setFormation(title, 0.15);
+                            }
+                        }
+                    });
+
+                    container.addEventListener('mouseleave', () => {
+                        if (window.hiumParticles) {
+                            window.hiumParticles.setEmission(null);
+                            window.hiumParticles.setFormation(null);
+                        }
+                    });
+                });
+            };
+
+            const initMoebiusObserver = () => {
+                const aboutSection = document.getElementById('about-hium');
+                const moebiusTarget = document.getElementById('moebius-target');
+                if (!aboutSection || !moebiusTarget) return;
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (window.hiumParticles) {
+                            if (entry.isIntersecting) {
+                                window.hiumParticles.setMoebiusFormation(moebiusTarget);
+                            } else {
+                                window.hiumParticles.setMoebiusFormation(null);
+                            }
+                        }
+                    });
+                }, { threshold: 0.2 });
+
+                observer.observe(aboutSection);
+            };
+
+            const initScrollReveal = () => {
+                const revealItems = document.querySelectorAll('.bento-item, .phi-card, .service-block, .about-hium-title, .about-hium-description, .section-title, .reveal-cinematic, .reveal-cinematic-delayed');
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('reveal-active');
+                        }
+                    });
+                }, { threshold: 0.05 });
+
+                revealItems.forEach(item => observer.observe(item));
+            };
+
+            const initTypewriter = () => {
+                const title = document.getElementById('typewriter-title');
+                if (!title) return;
+
+                const text = title.innerText;
+                title.innerText = '';
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            let i = 0;
+                            const speed = 100;
+                            const step = () => {
+                                if (i < text.length) {
+                                    title.innerText += text.charAt(i);
+                                    i++;
+                                    setTimeout(step, speed);
+                                }
+                            };
+                            step();
+                            observer.unobserve(title);
+                        }
+                    });
+                }, { threshold: 0.5 });
+
+                observer.observe(title);
+            };
+
+            const initThemeToggle = () => {
+                const toggleBtn = document.getElementById('theme-toggle');
+                if (!toggleBtn) return;
+
+                const setTheme = (theme) => {
+                    document.documentElement.setAttribute('data-theme', theme);
+                    localStorage.setItem('hium-theme', theme);
+                    if (window.hiumParticles) {
+                        window.hiumParticles.setTheme(theme);
+                    }
+                };
+
+                toggleBtn.addEventListener('click', () => {
+                    const currentTheme = document.documentElement.getAttribute('data-theme');
+                    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                    setTheme(newTheme);
+                });
+
+                // Listen for system changes
+                window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+                    if (!localStorage.getItem('hium-theme')) {
+                        setTheme(e.matches ? 'dark' : 'light');
+                    }
+                });
+
+                // Set initial particle theme if ready
+                if (window.hiumParticles) {
+                    const currentTheme = document.documentElement.getAttribute('data-theme');
+                    window.hiumParticles.setTheme(currentTheme);
+                }
+            };
+
+            // Wait for particles object to be ready
+            const checkParticles = setInterval(() => {
+                if (window.hiumParticles) {
+                    initParticleInteractions();
+                    initMoebiusObserver();
+                    initScrollReveal();
+                    initTypewriter();
+                    initThemeToggle(); // Initialize theme toggle
+                    clearInterval(checkParticles);
+                }
+            }, 100);
+
+            // Timeout safety
+            setTimeout(() => clearInterval(checkParticles), 5000);
+        });
+    </script>
+</body>
+
+</html>
