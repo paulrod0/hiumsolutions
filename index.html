@@ -16,12 +16,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js"></script>
     <script src="js/i18n.js"></script>
     <script>
-        // Immediate theme initialization to prevent FOIT
+        // Force light theme always
         (function () {
-            const savedTheme = localStorage.getItem('hium-theme');
-            const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            const theme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
-            document.documentElement.setAttribute('data-theme', theme);
+            document.documentElement.setAttribute('data-theme', 'light');
+            localStorage.removeItem('hium-theme');
         })();
     </script>
 </head>
@@ -40,18 +38,7 @@
                         <button class="lang-btn active" onclick="setLanguage('en')">EN</button>
                         <button class="lang-btn" onclick="setLanguage('es')">ES</button>
                     </li>
-                    <li class="theme-switch-container">
-                        <button id="theme-toggle" class="theme-toggle" title="Toggle Theme">
-                            <svg class="sun-icon" viewBox="0 0 24 24" width="20" height="20">
-                                <path fill="currentColor"
-                                    d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58c-.39-.39-1.03-.39-1.41 0s-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37c-.39-.39-1.03-.39-1.41 0s-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41l-1.06-1.06zm1.06-12.37c-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06c.39-.38.39-1.02 0-1.41zM7.05 18.37c-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06c.39-.38.39-1.02 0-1.41z" />
-                            </svg>
-                            <svg class="moon-icon" viewBox="0 0 24 24" width="20" height="20">
-                                <path fill="currentColor"
-                                    d="M12.12 22a10 10 0 0 0 9.22-6.19 1 1 0 0 0-1.14-1.32 8.52 8.52 0 0 1-5.71-12.86 1 1 0 0 0-1-1.58A10 10 0 0 0 12.12 22z" />
-                            </svg>
-                        </button>
-                    </li>
+                    <!-- Theme toggle removed: light mode only -->
                     <li><a href="#solutions" data-i18n="nav_solutions">Solutions</a></li>
                     <li><a href="#services" data-i18n="nav_services">Servicios</a></li>
                     <li><a href="#about" data-i18n="nav_about">Sobre nosotros</a></li>
@@ -466,34 +453,9 @@
             };
 
             const initThemeToggle = () => {
-                const toggleBtn = document.getElementById('theme-toggle');
-                if (!toggleBtn) return;
-
-                const setTheme = (theme) => {
-                    document.documentElement.setAttribute('data-theme', theme);
-                    localStorage.setItem('hium-theme', theme);
-                    if (window.hiumParticles) {
-                        window.hiumParticles.setTheme(theme);
-                    }
-                };
-
-                toggleBtn.addEventListener('click', () => {
-                    const currentTheme = document.documentElement.getAttribute('data-theme');
-                    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-                    setTheme(newTheme);
-                });
-
-                // Listen for system changes
-                window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-                    if (!localStorage.getItem('hium-theme')) {
-                        setTheme(e.matches ? 'dark' : 'light');
-                    }
-                });
-
-                // Set initial particle theme if ready
+                // Light mode only — ensure particles use light theme
                 if (window.hiumParticles) {
-                    const currentTheme = document.documentElement.getAttribute('data-theme');
-                    window.hiumParticles.setTheme(currentTheme);
+                    window.hiumParticles.setTheme('light');
                 }
             };
 
